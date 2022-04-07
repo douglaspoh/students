@@ -1,6 +1,6 @@
 package com.example.students.service;
 
-import com.example.students.config.UserDetailsConfiguration;
+import com.example.students.model.UserDetailsModel;
 import com.example.students.dto.StudentDTO;
 import com.example.students.entity.StudentEntity;
 import com.example.students.exception.StudentNotFoundException;
@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.students.constant.ApplicationConstants.NO_STUDENT_FOUND_ERROR_DETAILS;
 
@@ -77,6 +76,6 @@ public class StudentService implements UserDetailsService {
         StudentEntity student = studentRepository.findByUsername(username)
                 .orElseThrow(()-> new StudentNotFoundException("Student with username \'" + username + "\' not found"));
 
-        return new UserDetailsConfiguration(student);
+        return new UserDetailsModel(student);
     }
 }

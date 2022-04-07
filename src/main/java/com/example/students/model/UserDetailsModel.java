@@ -1,4 +1,4 @@
-package com.example.students.config;
+package com.example.students.model;
 
 import com.example.students.entity.StudentEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,18 +7,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
-public class UserDetailsConfiguration implements UserDetails {
+public class UserDetailsModel implements UserDetails {
 
     private String username;
     private String password;
     private List<GrantedAuthority> authorities;
 
-    public UserDetailsConfiguration(StudentEntity student){
+    public UserDetailsModel(StudentEntity student){
         this.username = student.getUsername();
         this.password = student.getPassword();
         this.authorities = Arrays.asList(new SimpleGrantedAuthority(student.getRole()));
@@ -26,7 +24,7 @@ public class UserDetailsConfiguration implements UserDetails {
 //                .map(SimpleGrantedAuthority::new)
 //                .collect(Collectors.toList());
     }
-    public UserDetailsConfiguration(){
+    public UserDetailsModel(){
     }
 
     @Override
