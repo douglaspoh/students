@@ -19,7 +19,11 @@ public class StudentEntity {
     private int id;
 
     @Column
-    private String name;
+    private String username;
+    @Column
+    private String password;
+    @Column
+    private String role;
     @Column
     private int age;
 }

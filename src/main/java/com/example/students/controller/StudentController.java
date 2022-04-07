@@ -16,22 +16,41 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+    @GetMapping("/user")
+    public String user(){
+        return ("<h1>Welcome User</h1>");
+    }
+
+    @GetMapping("/admin")
+    public String admin(){
+        return ("<h1>Welcome Admin</h1>");
+    }
+
     @GetMapping("/all")
     public List<StudentEntity> getAllStudents() {
         return studentService.getAllStudents();
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<StudentEntity> getStudentById(@PathVariable int id){
         return studentService.getStudentById(id);
     }
+
+    @GetMapping("/username")
+    public ResponseEntity<StudentEntity> getStudentByUsername(@RequestParam String username){
+        return studentService.getStudentByUsername(username);
+    }
+
     @PostMapping("/add")
     public StudentEntity addStudent(@RequestBody StudentDTO student){
         return studentService.saveStudentEntity(student);
     }
+
     @PutMapping("/{id}")
     public StudentEntity updateStudent(@RequestBody StudentDTO student, @PathVariable int id){
         return studentService.updateStudentById(student,id);
     }
+
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable int id){
         studentService.deleteStudentById(id);
